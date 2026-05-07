@@ -90,3 +90,5 @@ pytest
 ## Deploy
 
 Follow [docs/STEP_BY_STEP.md](docs/STEP_BY_STEP.md).
+
+Deployment verified on AWS.
