@@ -217,7 +217,6 @@ resource "aws_db_subnet_group" "main" {
 resource "aws_db_instance" "postgres" {
   identifier             = "${local.name}-postgres"
   engine                 = "postgres"
-  engine_version         = "16.3"
   instance_class         = var.db_instance_class
   allocated_storage      = 20
   db_name                = "appdb"
@@ -329,6 +328,8 @@ resource "aws_launch_template" "app" {
     resource_type = "instance"
     tags          = merge(local.common_tags, { Name = "${local.name}-app" })
   }
+
+  depends_on = [aws_secretsmanager_secret_version.app]
 }
 
 resource "aws_lb" "app" {
